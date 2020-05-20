@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MqngoTestDevWeb.Infrastructure
+namespace MangoTestDevWeb.Infrastructure
 {
   public class Class1
   {

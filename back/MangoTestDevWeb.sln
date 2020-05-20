@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangoTestDevWeb.Services", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangoTestDevWeb.Domain", "MangoTestDevWeb.Domain\MangoTestDevWeb.Domain.csproj", "{60886B95-CF47-47D3-9C55-2902319427F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MqngoTestDevWeb.Infrastructure", "MqngoTestDevWeb.Infrastructure\MqngoTestDevWeb.Infrastructure.csproj", "{54433EE9-8935-4E7A-8CF2-F74BEF3EFDBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangoTestDevWeb.Infrastructure", "MangoTestDevWeb.Infrastructure\MangoTestDevWeb.Infrastructure.csproj", "{3766AB2D-6635-4F9B-9BE0-791E1A91EBA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{60886B95-CF47-47D3-9C55-2902319427F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60886B95-CF47-47D3-9C55-2902319427F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60886B95-CF47-47D3-9C55-2902319427F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54433EE9-8935-4E7A-8CF2-F74BEF3EFDBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54433EE9-8935-4E7A-8CF2-F74BEF3EFDBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54433EE9-8935-4E7A-8CF2-F74BEF3EFDBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54433EE9-8935-4E7A-8CF2-F74BEF3EFDBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3766AB2D-6635-4F9B-9BE0-791E1A91EBA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3766AB2D-6635-4F9B-9BE0-791E1A91EBA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3766AB2D-6635-4F9B-9BE0-791E1A91EBA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3766AB2D-6635-4F9B-9BE0-791E1A91EBA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
