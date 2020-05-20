@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  mangotestdevweb.api:
+    image: mangotestdevwebapi
+    restart: on-failure
+    ports:
+      - "5000:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: "http://+:80"
+      Database__Server: "db"
+      Database__Version: "8.0.20"
+      Database__Name: "${Database_Name}"
+      Database__User: "${Database_User}"
+      Database__Password: "${Database_Password}"
+      Database__User: "appuser"
+      Auth__Audience: "${Auth_Audience}"
+      Auth__Issuer: "${Auth_Issuer}"
+      Auth__Secret: "${Auth_Secret}"  
+      Auth__ExpiresInMinutes: "${Auth_ExpiresInMinutes}"
+    build:
+      context: back/
+      dockerfile: MangoTestDevWeb.Api/Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ${LOGS_PATH}:/app/logs
+    networks:
+      - app-web
+      - app-db
+  db:
+    image: mysql:8.0.20
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "${Database_RootPassword}"
+      MYSQL_DATABASE: "${Database_Name}"
+      MYSQL_USER: "${Database_User}"
+      MYSQL_PASSWORD: "${Database_Password}"
+    networks:
+      - app-db
+
+networks:
+  app-web:
+  app-db:

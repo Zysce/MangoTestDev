@@ -1,14 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using AutoMapper;
+using MangoTestDevWeb.Domain.Aggregates;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 
 namespace MangoTestDevWeb.Api
 {
@@ -20,11 +19,37 @@ namespace MangoTestDevWeb.Api
     }
 
     public IConfiguration Configuration { get; }
+    private IWebHostEnvironment Environment { get; }
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      services
+        .AddAutoMapper(typeof(IAggregateRoot).GetTypeInfo().Assembly)
+        .ConfigureAndValidate(Configuration)
+        .AddCors()
+        .AddRequiredServices()
+        .AddEntityFramework();
+
       services.AddControllers();
+
+      services
+       .AddJwtAuthentication();
+
+      services
+        .AddLogging(l =>
+        {
+          l
+            .ClearProviders()
+            .AddConsole()
+            .AddNLog();
+          if (Environment != null && Environment.IsDevelopment())
+          {
+            l.AddDebug();
+          }
+        });
+
+      services.SeedData();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,13 +60,17 @@ namespace MangoTestDevWeb.Api
         app.UseDeveloperExceptionPage();
       }
 
+      app.UseCors();
       app.UseRouting();
 
+      app.UseAuthentication();
       app.UseAuthorization();
 
       app.UseEndpoints(endpoints =>
       {
-        endpoints.MapControllers();
+        endpoints.MapControllerRoute(
+                  name: "default",
+                  pattern: "{controller}/{action}/{id?}");
       });
     }
   }

@@ -4,16 +4,17 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["MangoTestDevWeb.Api/MangoTestDevWeb.Api.csproj", "MangoTestDevWeb.Api/"]
-RUN dotnet restore "MangoTestDevWeb.Api/MangoTestDevWeb.Api.csproj"
+ARG project=MangoTestDevWeb.Api
 COPY . .
-WORKDIR "/src/MangoTestDevWeb.Api"
-RUN dotnet build "MangoTestDevWeb.Api.csproj" -c Release -o /app/build
+RUN dotnet restore "./$project/$project.csproj"
+RUN dotnet build -c Release --no-restore "./$project/$project.csproj"
 
 FROM build AS publish
-RUN dotnet publish "MangoTestDevWeb.Api.csproj" -c Release -o /app/publish
+WORKDIR /src
+ARG project=MangoTestDevWeb.Api
+RUN dotnet publish --no-self-contained --no-build --no-restore -c Release -o /app/publish "./$project/$project.csproj"
 
-FROM base AS final
+FROM base AS runtime
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "MangoTestDevWeb.Api.dll"]
