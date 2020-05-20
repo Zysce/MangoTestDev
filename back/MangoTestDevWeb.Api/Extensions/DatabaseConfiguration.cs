@@ -43,13 +43,14 @@ namespace MangoTestDevWeb.Api
 
       var userManager = provider.GetRequiredService<UserManager<IdentityUser>>();
 
-      if (userManager.FindByNameAsync("user").GetAwaiter().GetResult() != null)
+      if (userManager.FindByNameAsync("user").GetAwaiter().GetResult() == null)
       {
         var adminUser = new IdentityUser
         {
-          UserName = "user"
+          UserName = "user",
+          Email = "user@dev.com"
         };
-        userManager.CreateAsync(adminUser, "user").GetAwaiter().GetResult();
+        userManager.CreateAsync(adminUser, "User").GetAwaiter().GetResult();
       }
 
       return services;

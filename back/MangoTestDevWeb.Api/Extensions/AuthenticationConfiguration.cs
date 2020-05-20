@@ -14,9 +14,18 @@ namespace MangoTestDevWeb.Api
   {
     public static IServiceCollection AddJwtAuthentication(this IServiceCollection services)
     {
-      services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+      services.AddIdentity<IdentityUser, IdentityRole>(opt =>
+      {
+        opt.Password.RequiredLength = 4;
+        opt.Password.RequireDigit = false;
+        opt.Password.RequireLowercase = true;
+        opt.Password.RequireUppercase = true;
+        opt.Password.RequireNonAlphanumeric = false;
+        opt.SignIn.RequireConfirmedEmail = false;
+        opt.SignIn.RequireConfirmedAccount = false;
+      })
+      .AddEntityFrameworkStores<ApplicationDbContext>()
+      .AddDefaultTokenProviders();
 
       var auth = services.BuildServiceProvider().GetRequiredService<IOptions<Auth>>().Value;
       services

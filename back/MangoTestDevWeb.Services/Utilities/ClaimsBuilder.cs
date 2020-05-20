@@ -23,7 +23,7 @@ namespace MangoTestDevWeb.Services
       var defaultClaims = new[]
       {
         new Claim(ClaimTypes.Name, user.UserName),
-        new Claim(ClaimTypes.NameIdentifier, user.Email),
+        new Claim(ClaimTypes.NameIdentifier, user.UserName),
         new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
         new Claim(JwtRegisteredClaimNames.Email, user.Email),
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
