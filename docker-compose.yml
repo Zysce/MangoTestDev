@@ -1,6 +1,14 @@
 version: '3.7'
 
 services:
+  mangotestdevweb.app:
+    image: mangotestdevwebapp
+    restart: on-failure
+    ports:
+      - "80:80"
+    build:
+      context: front/
+      dockerfile: Dockerfile
   mangotestdevweb.api:
     image: mangotestdevwebapi
     restart: on-failure
