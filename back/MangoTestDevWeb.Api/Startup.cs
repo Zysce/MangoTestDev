@@ -60,8 +60,9 @@ namespace MangoTestDevWeb.Api
         app.UseDeveloperExceptionPage();
       }
 
-      app.UseCors();
       app.UseRouting();
+
+      app.UseCors("AllowAll");
 
       app.UseAuthentication();
       app.UseAuthorization();

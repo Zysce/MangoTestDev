@@ -1,19 +1,26 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MangoTestDevWeb.Api
 {
   public static class CorsConfiguration
   {
-    public static IApplicationBuilder UseCors(this IApplicationBuilder app)
+    public static IServiceCollection AddCors(this IServiceCollection services)
     {
-      app.UseCors(x => x
-          .WithOrigins("http://localhost:8080") // TODO add url in settings
-            .AllowCredentials()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+      services.AddCors(options =>
+      {
+        options.AddPolicy("AllowAll",
+            builder =>
+            {
+              builder
+                  .AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+            });
+      });
 
-      return app;
+      return services;
     }
   }
 }
