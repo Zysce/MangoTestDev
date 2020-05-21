@@ -1,28 +1,11 @@
-import React, { useState } from "react";
-import useApiController from "../../../controllers/apiController";
+import React from "react";
+import useLoginController from "../../../controllers/loginController";
 import "./login.scss";
 
 const Login = ({ updateToken }) => {
-  const [login, setLogin] = useState();
-  const [password, setPassword] = useState();
-
-  const [error, setError] = useState();
-
-  const { post } = useApiController();
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError(null);
-    try {
-      const response = await post("authentication/login", {
-        username: login,
-        password,
-      });
-      updateToken(response?.data?.value?.accessToken);
-    } catch (err) {
-      setError("Username/password incorrects");
-    }
-  };
+  const { setLogin, setPassword, handleSubmit, error } = useLoginController({
+    updateToken,
+  });
 
   return (
     <div className="content">
