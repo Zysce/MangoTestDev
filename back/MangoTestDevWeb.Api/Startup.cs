@@ -49,7 +49,7 @@ namespace MangoTestDevWeb.Api
           }
         });
 
-      services.SeedData();
+      //services.SeedData();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

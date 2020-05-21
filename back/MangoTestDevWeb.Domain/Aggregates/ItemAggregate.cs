@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MangoTestDevWeb.Domain
+﻿namespace MangoTestDevWeb.Domain
 {
   public class ItemAggregate : IAggregateRoot
   {
@@ -11,5 +7,15 @@ namespace MangoTestDevWeb.Domain
     public string Description { get; set; }
     public byte[] Image { get; set; }
 
+    public static ItemAggregate Create(int id, string title, string description, byte[] img)
+    {
+      return new ItemAggregate
+      {
+        Id = id,
+        Title = title,
+        Description = description,
+        Image = img
+      };
+    }
   }
 }

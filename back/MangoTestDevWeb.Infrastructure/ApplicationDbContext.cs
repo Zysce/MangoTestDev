@@ -1,4 +1,5 @@
 ﻿using MangoTestDevWeb.Domain;
+using MangoTestDevWeb.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@ namespace MangoTestDevWeb.Infrastructure
     protected override void OnModelCreating(ModelBuilder builder)
     {
       base.OnModelCreating(builder);
+      builder.SeedData();
     }
   }
 }
