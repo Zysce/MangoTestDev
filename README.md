@@ -1,8 +1,12 @@
 # MangoTestDev
 
+## Prérequis
+
+Avoir installé Docker ou bien node.js (dernière stable), yarn et .net core 3.1.4
+
 ## Pour tester
 
-Note: l'url présente dans le fichier .env sera peut être à changer
+Note: l'url présente dans le fichier .env (pour les tests en local) ou dans le docker-compose.yml (pour les tests avec Docker) sera peut être à changer
 
 ```
 docker-compose up -d
