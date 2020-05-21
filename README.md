@@ -12,7 +12,7 @@ Note: l'url présente dans le fichier .env (pour les tests en local) ou dans le 
 docker-compose up -d
 ```
 
-Pour accéder au front: http://localhost
+Pour accéder au front: http://localhost (ou n'importe quel host associé à docker)
 
 Le back et le front sont testables séparément via yarn et dotnet
 
