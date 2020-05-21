@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MangoTestDevWeb.Domain.Aggregates
+namespace MangoTestDevWeb.Domain
 {
   public interface IAggregateRoot
   {

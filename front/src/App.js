@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.scss";
+import useAuthenticationController from "./controllers/authenticationController";
+import Login from "./views/pages/login/Login";
+import AuthenticatedRoutes from "./views/pages/AuthenticatedRoutes";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 
-function App() {
+const App = () => {
+  const {
+    loggedIn,
+    setLoggedIn,
+    token,
+    updateToken,
+  } = useAuthenticationController();
+
+  useEffect(() => {
+    setLoggedIn(!!token);
+  }, [setLoggedIn, token]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {loggedIn ? (
+        <AuthenticatedRoutes />
+      ) : (
+        <Route render={() => <Login updateToken={updateToken} />} />
+      )}
+    </Router>
   );
-}
+};
 
 export default App;

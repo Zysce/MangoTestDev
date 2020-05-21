@@ -1,6 +1,6 @@
 using System.Reflection;
 using AutoMapper;
-using MangoTestDevWeb.Domain.Aggregates;
+using MangoTestDevWeb.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

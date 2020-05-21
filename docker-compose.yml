@@ -9,6 +9,10 @@ services:
     build:
       context: front/
       dockerfile: Dockerfile
+    environment: 
+      REACT_APP_API_URL: "http://localhost:5000"
+    networks:
+      - app-web
   mangotestdevweb.api:
     image: mangotestdevwebapi
     restart: on-failure
@@ -35,7 +39,6 @@ services:
     volumes:
       - ${LOGS_PATH}:/app/logs
     networks:
-      - app-web
       - app-db
   db:
     image: mysql:8.0.20
