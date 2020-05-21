@@ -8,7 +8,7 @@ export default () => {
     baseURL: `${process.env.REACT_APP_API_URL}/api`,
   });
   api.interceptors.request.use((request) => {
-    if (request) {
+    if (!!request && !!token) {
       if (!request.headers) request.headers = {};
       request.headers["Authorization"] = `Bearer ${token}`;
     }
